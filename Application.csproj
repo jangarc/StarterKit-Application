@@ -1,0 +1,56 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Common\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="10.0.12" />
+    <PackageReference Include="Microsoft.Extensions.Localization" Version="10.0.12" />
+    <PackageReference Include="Paramore.Brighter" Version="10.7.0" />
+    <PackageReference Include="Paramore.Darker" Version="4.1.1" />
+    <PackageReference Include="Riok.Mapperly" Version="4.3.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Domain\Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Features\Users\Commands\CreateUser\CreateUserMessages.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>CreateUserMessages.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Features\Users\Commands\CreateUser\CreateUserMessages.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>CreateUserMessages.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  
+  <ItemGroup>
+    <!-- 💡 讓所有特定語系的 resx 檔案，自動折疊到對應的主 resx 檔案下方 -->
+    <EmbeddedResource Update="**\*.??-??.resx">
+      <DependentUpon>$([System.String]::Copy('%(Filename)').Substring(0, $([System.String]::Copy('%(Filename)').LastIndexOf('.')))).resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="**\*.??.resx">
+      <DependentUpon>$([System.String]::Copy('%(Filename)').Substring(0, $([System.String]::Copy('%(Filename)').LastIndexOf('.')))).resx</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  
+  <ItemGroup>
+    <EmbeddedResource Update="Features\Users\Commands\CreateUser\CreateUserMessages.zh-TW.resx">
+      <DependentUpon>CreateUserMessages.resx</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>
