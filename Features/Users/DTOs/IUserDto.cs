@@ -2,7 +2,9 @@
 
 public interface IBaseUserDto
 {
-    Guid Id { get; }
+    Guid? Id { get; }
     string Name { get; }
+    string? AliasName { get; }
+    string Account { get; }
     DateTime? Birthday { get; }
 }

@@ -4,8 +4,10 @@ namespace Application.Features.Users.Commands;
 
 public class CreateUserCommand : Command
 {
-    public string Username { get; init; }
+    public string Name { get; init; }
+    public string? AliasName { get; init; }
     public string Account { get; init; }
+    public string? Email { get; init; }
     public string Password { get; init; }
     public Guid TenantId { get; init; }
     public DateTime? Birthday { get; init; }
@@ -13,12 +15,16 @@ public class CreateUserCommand : Command
 
     public Guid UserId { get; init; }
 
-    public CreateUserCommand(string username, string account, string password, Guid tenantId, DateTime? birthday, Guid createUserId)
+    public CreateUserCommand() : base(Guid.NewGuid()) { }
+
+    public CreateUserCommand(string name, string account, string password, Guid tenantId, DateTime? birthday, Guid createUserId, string? aliasName = null, string? email = null)
         : base(Guid.NewGuid())
     {
         UserId = Guid.NewGuid();
-        Username = username;
+        Name = name;
+        AliasName = aliasName;
         Account = account;
+        Email = email;
         Password = password;
         TenantId = tenantId;
         Birthday = birthday;
