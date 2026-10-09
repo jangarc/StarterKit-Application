@@ -1,4 +1,13 @@
-﻿namespace Application.Features.Users.DTOs;
+﻿// Copyright (C) 2026 <CHANG,SHIH-HSIN/Arc Studio>
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Affero General Public License as
+// published by the Free Software Foundation, either version 3 of the
+// License, or (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY
+namespace Application.Features.Users.DTOs;
 
 public record BaseUserDto : IBaseUserDto
 {
@@ -30,7 +39,7 @@ public record BaseUserDto : IBaseUserDto
 public record UserDto : BaseUserDto
 {
     #pragma warning disable CS8618
-    protected UserDto() { }
+    public UserDto() { }
     #pragma warning disable CS8618
 
     public UserDto(Guid? id, string name, string? aliasName, DateTime? birthday,
@@ -42,20 +51,23 @@ public record UserDto : BaseUserDto
     {
         TenantId = tenantId;
         TenantName = tenantName;
-        CreateUserId = createUserId;
-        CreateUserName = createUserName;
-        UpdateUserId = updateUserId;
-        UpdateUserName = updateUserName;
+        CreatedUserId = createUserId;
+        CreatedUserName = createUserName;
+        UpdatedUserId = updateUserId;
+        UpdatedUserName = updateUserName;
     }
 
     public Guid? TenantId { get; set; }
     public string? TenantName { get; set; }
 
-    public Guid? CreateUserId { get; set; }
-    public string? CreateUserName { get; set; }
+    public Guid? CreatedUserId { get; set; }
+    public string? CreatedUserName { get; set; }
 
-    public Guid? UpdateUserId { get; set; }
-    public string? UpdateUserName { get; set; }
+    public Guid? UpdatedUserId { get; set; }
+    public string? UpdatedUserName { get; set; }
+
+    public Guid? DeletedUserId { get; set; }
+    public string? DeletedUserName { get; set; }
 }
 
 public record UserSecretDto : UserDto
